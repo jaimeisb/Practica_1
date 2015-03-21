@@ -82,14 +82,21 @@ public static void promedio(){
 }
 
 public static void hora(){
-		String a;
-		String []hora= new String[4];
-	System.out.println("Ingrese hora");
-	Scanner s=new Scanner(System.in);
-	hora[0]=s.nextLine();
-	System.out.println(hora);
-	
+		String hora;
+		System.out.println("Ingrese hora");
+		Scanner s=new Scanner(System.in);
+		hora=s.nextLine();
+		String []separador= hora.split(":");
+		int entero = Integer.parseInt(separador[0]);
+		if (entero>12 && entero<25){
+			System.out.println("Son las "+(entero-12)+":"+separador[1]+" P.M.");
+		}
+		else if(entero<12 && entero>=0)
+				System.out.println("Son las "+(entero)+":"+separador[1]+" A.M.");
 }
+	
+		
+
 
 public static void figuras(){
 	int a;
@@ -111,8 +118,25 @@ public static void figuras(){
 			
 }
 public static void mes(){
+	String fecha;
+	String fecha2;
+	System.out.println("Ingrese la primera fecha de la forma dd/mm/aaaa");
+	Scanner s=new Scanner(System.in);
+	fecha=s.nextLine();
+	String []separador= fecha.split("/");
+	int dia1 = Integer.parseInt(separador[0]);
+	int mes1 = Integer.parseInt(separador[1]);
+	int ano1 = Integer.parseInt(separador[2]);
+	System.out.println("Ingrese la segunda fecha de la forma dd/mm/aaaa");
+	fecha2=s.nextLine();
+	String []separador2= fecha2.split("/");
+	int dia2 = Integer.parseInt(separador2[0]);
+	int mes2 = Integer.parseInt(separador2[1]);
+	int ano2 = Integer.parseInt(separador2[2]);
+	System.out.println("La diferencia de dias es de "+((dia2-dia1)+((mes2-mes1)*30)+((ano2-ano1)*360))+" dias");
 	
 	
+
 }
 public static void calculadora(){
 	int a,b;
@@ -195,8 +219,7 @@ public static void rango(){
 			case 1: System.out.print("cien"); break;
 		}
 		switch((x/10)%10){
-			
-			case 2: System.out.print("veinti");break;
+					
 			case 3: System.out.print("treinta");break;
 			case 4: System.out.print("cuarenta");break;
 			case 5: System.out.print("cincuenta");break;
@@ -284,23 +307,41 @@ public static void piramide(){
 	    	 for(int j=n-i;j>0;j--)
 	    		 System.out.print(" ");
 	    	 for( int k=i-1;k>0;k--)			
-	    		 System.out.print(a);
+	    		 System.out.print(a+" ");
     	 System.out.println(a++);
       }
-     /*for(i=9;i>1;i--){
-	if((i%2)==1){
-		for(k=i;k<=11;k++){
-			if((k%2)==1){
-				System.out.print(" ");
-			}
-		}
-		for(j=i-2;j>0;j--){
-			System.out.print("*");
-		}
-		System.out.println();
-		for(int j=n-i;j>0;j--)*/
-     
-      
+ }
+public static void lista(){
+	
+    int[] lista; 
+    int longitud, cambio;
+
+    String Unidad[]={"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};  
+    String Decena[]={"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
+        Scanner s = new Scanner(System.in);
+ 
+    System.out.print(" Ingrese el tamano de la lista ");
+    longitud = s.nextInt();
+    lista = new int[longitud];
+    System.out.println("Ingrese   - " + longitud + " -  Numeros : ");
+    for(int i=0; i<longitud ; i++){
+        lista[i] = s.nextInt();
+    }
+     for(int i=0; i<longitud-1 ; i++ )
+        for(int j=i+1 ; j < longitud ; j++)
+            if(lista[j]<lista[i]){
+            
+                cambio = lista[j];
+                lista[j] = lista[i];
+                 lista[i] = cambio;
+            }
+
+   
+    for(int i=0; i<longitud ; i++);
+    	
+ 
+    System.out.println("El numero mayor es "+lista[longitud-1]);
+    System.out.println("El numero menor es "+lista[0]);
 }
 public static void cadena(){
 
@@ -377,6 +418,30 @@ public static void juego(){
 	
 }
 
+public static void primo(){
+	int n,x=0;
+	Scanner s=new Scanner(System.in);
+	System.out.println("ingrese un numero");
+	n=s.nextInt();
+	int v[]=new int[n];
+	for (int i=2;i<n;i++){
+		v[i]=i;
+	}
+		for(int i=2; i<n;i++){
+			if (v[i]!=0);{
+				for (int j=i*2;j<n;j=j+i){
+					v[j]=0;
+				}
+			}
+		}
+		for(int i=2;i<n;i++){
+			if (v[i]!=0)
+			x++;
+				
+		}
+	
+		System.out.println("el total de numeros primos desde 1 hasta "+n+" es "+(x));
+}
 
 
 
@@ -396,8 +461,10 @@ public static void main(String[] args) {
 		case 8: rango();break;
 		case 9: conversion();break;
 		case 10: piramide();break;
+		case 11: lista(); break;
 		case 12: cadena();break;
 		case 13: juego();break;
 		case 14: cuadrado();break;
+		case 15: primo(); break;
 		}
 }}
